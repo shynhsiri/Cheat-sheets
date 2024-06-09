@@ -16,6 +16,17 @@ bot =Client(
 def start(bot, message): #function
     bot.send_message(message.chat.id, "Hello World")#method
 
+#  2/1-reply_text()
+
+@bot.on_message(filters.command('reply'))
+def reply(bot, message):
+    message.reply_text("reply to message",  quote=True)
+   
+# 2/2-echo
+
+@bot.on_message(filters.text & filters.private)
+def echo(client, message):
+    message.reply_text(message.text)
 
 # print in terminal to check code  is running 
 print("running")
