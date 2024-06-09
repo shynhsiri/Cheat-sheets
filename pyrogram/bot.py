@@ -28,6 +28,15 @@ def reply(bot, message):
 def echo(client, message):
     message.reply_text(message.text)
 
+#  3-welcome
+
+GROUP = "#" #Group id/username and also can be a list
+WELCOME_MESSAGE = "Welcome!" #message
+
+@bot.on_message(filters.chat(GROUP) & filters.new_chat_members) #filter new members
+def welcome(client, message):
+    message.reply_text(WELCOME_MESSAGE)#pay attention in groups quote default is True
+
 # print in terminal to check code  is running 
 print("running")
 bot.run()
