@@ -24,9 +24,9 @@ def reply(bot, message):
    
 # 2/2-echo
 
-@bot.on_message(filters.text & filters.private)
-def echo(client, message):
-    message.reply_text(message.text)
+# @bot.on_message(filters.text & filters.private)
+# def echo(client, message):
+#     message.reply_text(message.text)
 
 #  3-welcome
 
@@ -36,6 +36,30 @@ WELCOME_MESSAGE = "Welcome!" #message
 @bot.on_message(filters.chat(GROUP) & filters.new_chat_members) #filter new members
 def welcome(client, message):
     message.reply_text(WELCOME_MESSAGE)#pay attention in groups quote default is True
+
+# 4-media
+# be  sure to disable echo
+
+# send_photo
+
+@bot.on_message(filters.command('photo'))
+def photo(bot, message):
+    bot.send_photo(message.chat.id, "https://unsplash.com/photos/black-android-smartphone-vXInUOv1n84") #path
+    bot.send_photo(message.chat.id, "#") #second photo path
+
+# get  media(audio/document/video/sticker/animation/voice)
+
+@bot.on_message(filters.audio & filters.private)
+def audioget(bot, message):
+    message.reply(message.audio.file_id)  #get file ids
+# replace audio with data types in parentheses
+
+# send  media(audio/document/video/sticker/animation/voice)
+
+@bot.on_message(filters.command('audio'))
+def audiosend(bot, message):
+    bot.send_audio(message.chat.id, "#")  #insert the id that given by bot
+# replace audio with data types in parentheses
 
 # print in terminal to check code  is running 
 print("running")
