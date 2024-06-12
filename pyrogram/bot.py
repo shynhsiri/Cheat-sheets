@@ -61,6 +61,15 @@ def audiosend(bot, message):
     bot.send_audio(message.chat.id, "#")  #insert the id that given by bot
 # replace audio with data types in parentheses
 
+# 5-delete_message
+
+@bot.on_message(filters.text)
+def delete_text(bot, message):
+    word_list =  ["fuck", "wtf"]
+    if any(word in message.text.lower() for word in word_list):
+        bot.delete_messages(message.chat.id, [message.id])
+        bot.send_message(message.chat.id, "Blocklist word detected!")
+
 # print in terminal to check code  is running 
 print("running")
 bot.run()
